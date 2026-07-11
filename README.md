@@ -13,14 +13,6 @@ A simple and beautiful Notes Management application built with Flutter and Fireb
 - Simple and attractive UI
 - Responsive and clean user interface
 
-## Screenshots
-
-> Add your app screenshots here.
-
-| Home Screen | Add Note Screen |
-|-------------|----------------|
-| Screenshot | Screenshot |
-
 ---
 
 ## Built With
@@ -28,7 +20,6 @@ A simple and beautiful Notes Management application built with Flutter and Fireb
 - Flutter
 - Dart
 - Firebase Firestore
-- Material Design 3
 
 ---
 
