@@ -54,7 +54,7 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
         ),
       );
 
-      message = "✅ Note saved successfully";
+      message = "Note saved successfully";
     } else {
       await firestoreService.updateNote(
         NoteModel(
@@ -64,7 +64,7 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
         ),
       );
 
-      message = "✅ Note updated successfully";
+      message = "Note updated successfully";
     }
 
     if (mounted) {
@@ -77,33 +77,107 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
     final isEdit = widget.note != null;
 
     return Scaffold(
-      appBar: AppBar(title: Text(isEdit ? "Edit Note" : "Add Note")),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
+      backgroundColor: const Color(0xffFFF5F7),
+      appBar: AppBar(
+        backgroundColor: const Color(0xffFF6B9D),
+        foregroundColor: Colors.white,
+        centerTitle: true,
+        title: Text(
+          isEdit ? "Edit Note" : "Add Note",
+          style: const TextStyle(fontWeight: FontWeight.bold),
+        ),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            TextField(
-              controller: _titleController,
-              decoration: const InputDecoration(
-                labelText: "Title",
-                border: OutlineInputBorder(),
+            const SizedBox(height: 20),
+
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(25),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.pink.withOpacity(0.1),
+                    blurRadius: 20,
+                    offset: const Offset(0, 8),
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: _descriptionController,
-              maxLines: 5,
-              decoration: const InputDecoration(
-                labelText: "Description",
-                border: OutlineInputBorder(),
-              ),
-            ),
-            const SizedBox(height: 24),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: saveNote,
-                child: Text(isEdit ? "Update Note" : "Save Note"),
+              child: Column(
+                children: [
+                  TextField(
+                    controller: _titleController,
+                    decoration: InputDecoration(
+                      labelText: "Title",
+                      prefixIcon: const Icon(
+                        Icons.title,
+                        color: Color(0xffFF6B9D),
+                      ),
+                      filled: true,
+                      fillColor: const Color(0xffFFF5F7),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(18),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  TextField(
+                    controller: _descriptionController,
+                    maxLines: 6,
+                    decoration: InputDecoration(
+                      labelText: "Description",
+                      alignLabelWithHint: true,
+                      prefixIcon: const Padding(
+                        padding: EdgeInsets.only(bottom: 90),
+                        child: Icon(
+                          Icons.description,
+                          color: Color(0xffFF6B9D),
+                        ),
+                      ),
+                      filled: true,
+                      fillColor: const Color(0xffFFF5F7),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(18),
+                        borderSide: BorderSide.none,
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 30),
+
+                  SizedBox(
+                    width: double.infinity,
+                    height: 55,
+                    child: ElevatedButton.icon(
+                      onPressed: saveNote,
+                      icon: Icon(
+                        isEdit ? Icons.edit : Icons.save,
+                        color: Colors.white,
+                      ),
+                      label: Text(
+                        isEdit ? "Update Note" : "Save Note",
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xffFF6B9D),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18),
+                        ),
+                        elevation: 5,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
